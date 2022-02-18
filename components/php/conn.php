@@ -48,9 +48,6 @@
 				$id = $GLOBALS['conn']->insert_id;
 				emailVerification($id, $email);
 			}
-			else{
-				var_dump($GLOBALS['conn']->query($query));
-			}
   		}
   			
 
