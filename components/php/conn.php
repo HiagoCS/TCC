@@ -79,9 +79,14 @@
 			//Adicione um retorno caso retorne menos ou mais de uma coluna
 		}
   	}
-
-
-
-
-
+  	function emailVerification($id, $email){
+  		$topic = "Confirme seu cadastro!";
+  		//Here pass the link of confirmation.php
+  		$link = "http://highlancer.tcc/components/php/confirm?h=".md5($id);
+  		$text = "Clique no link abaixo para confimar seu cadastro\n". $link;
+  		$header = "From: High-Lancer.corp";
+  		//Here this send a email to $email variable
+		mail($email, $topic, $text, $header);
+		echo "<h4>Foi enviado uma verificação de e-mail, verifique sua caixa de entrada ou spam e acesse o link!</h4><p>Ou pode acessar ele diretamente por <a href='".$link."'>aqui</a></p>";
+  	}
 ?>
