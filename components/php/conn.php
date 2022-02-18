@@ -56,5 +56,32 @@
 
   	}
 
+  	function Login($email, $pass){
+  		//First run a query that checks the email and password
+		$query = 'SELECT id, username, status FROM tb_user WHERE email = "'.$email.'" AND password = "'.$pass.'"';
+		$result  = $GLOBALS['conn']->query($query);
+		if(($result->num_rows) == 1){
+			//If register is successfully, hes verify the status
+			$row = mysqli_fetch_assoc($result);
+			if($row['status'] == 1){
+				//Here is all done, now the user is landing to home page and save in session hes email
+				session_start();
+				$_SESSION['email'] = $email;
+				//Here pass the home page
+				//header("Location: http://highlancer.tcc/home.php");
+				exit();
+			}
+			else{
+				emailVerification($row['id'], $email);
+			}
+		}
+		else{
+			//Adicione um retorno caso retorne menos ou mais de uma coluna
+		}
+  	}
+
+
+
+
 
 ?>
