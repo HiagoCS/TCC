@@ -24,4 +24,37 @@
 			//Adicione um retorno caso não encontre Niveis
 		}
   	}
+
+  	function Register($name, $email, $tel, $pass, $cep, $level){
+  		//First this checks if a user of the same email already exists
+  		$query = 'select email, status, password from tb_user where email = "'.$email.'"';
+  		$result = $GLOBALS['conn']->query($query);
+  		if(($result->num_rows) != 0){
+  			//If this user exists, the function checks if he has verified his account
+  			$row = mysqli_fetch_assoc($result);
+			if($row['status'] == 1){
+				//If he is verify, enter in Login function
+				Login($row['email'], $row['password']);
+			}
+			else{
+				//Here pass the emailVerification function, which creates an email message and sends it to the user.
+				emailVerification($id, $email);
+			}
+  		}
+  		else{
+  			//Here is the register query and codifiyng the password and status value
+  			$query = 'INSERT INTO tb_user VALUES(null, "'.$name.'", "'.$email.'", '.$tel.', "'.md5($pass).'", "'.md5(0).'", '.$cep.', null, '.$level.')';
+			if($GLOBALS['conn']->query($query)){
+				$id = $GLOBALS['conn']->insert_id;
+				emailVerification($id, $email);
+			}
+			else{
+				var_dump($GLOBALS['conn']->query($query));
+			}
+  		}
+  			
+
+  	}
+
+
 ?>
