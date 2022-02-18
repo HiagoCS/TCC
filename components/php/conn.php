@@ -78,8 +78,8 @@
   	}
   	function emailVerification($id, $email){
   		$topic = "Confirme seu cadastro!";
-  		//Here pass the link of confirmation.php
-  		$link = "http://highlancer.tcc/components/php/confirm?h=".md5($id);
+  		//Here pass the link of confirmationEmail.php
+  		$link = "http://highlancer.tcc/components/php/confirmEmail?h=".md5($id);
   		$text = "Clique no link abaixo para confimar seu cadastro\n". $link;
   		$header = "From: High-Lancer.corp";
   		//Here this send a email to $email variable
