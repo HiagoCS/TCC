@@ -43,7 +43,7 @@
   		}
   		else{
   			//Here is the register query and codifiyng the password and status value
-  			$query = 'INSERT INTO tb_user VALUES(null, "'.$name.'", "'.$email.'", '.$tel.', "'.md5($pass).'", "'.md5(0).'", '.$cep.', null, '.$level.')';
+  			$query = 'INSERT INTO tb_user VALUES(null, "'.$name.'", "'.$email.'", "'.$tel.'", "'.md5($pass).'", "'.md5(0).'", '.$cep.', null, '.$level.')';
 			if($GLOBALS['conn']->query($query)){
 				$id = $GLOBALS['conn']->insert_id;
 				emailVerification($id, $email);
