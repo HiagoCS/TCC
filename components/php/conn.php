@@ -54,6 +54,7 @@
   	}
 
   	function Login($email, $pass){
+  		//Obs: needs to convert $pass to MD5 before to enter in "conn.php"
   		//First run a query that checks the email and password
 		$query = 'SELECT id, username, status FROM tb_user WHERE email = "'.$email.'" AND password = "'.$pass.'"';
 		$result  = $GLOBALS['conn']->query($query);
