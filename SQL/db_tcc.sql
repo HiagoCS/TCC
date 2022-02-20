@@ -28,13 +28,11 @@ CREATE TABLE IF NOT EXISTS tb_user(
 CREATE TABLE IF NOT EXISTS tb_msg(
     id INT PRIMARY KEY AUTO_INCREMENT,
     author INT NOT NULL,
-    receiver INT NOT NULL,
-    content TEXT NOT NULL,
-    timestamp datetime NOT NULL,
-    isAnswer boolean NOT NULL,
     feedback_id INT,
+    content TEXT NOT NULL,
+    isAnswer boolean NOT NULL,
     isSend boolean NOT NULL,
     isRead boolean NOT NULL,
-    FOREIGN KEY (author) REFERENCES tb_user(id),
-    FOREIGN KEY (receiver) REFERENCES tb_user(id)
-)ENGINE=InnoDb DEFAULT CHARSET=utf8;
+    timestamp datetime NOT NULL,
+    FOREIGN KEY (author) REFERENCES tb_user(id)
+    )ENGINE=InnoDb DEFAULT CHARSET=utf8;
