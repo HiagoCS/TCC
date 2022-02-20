@@ -18,6 +18,7 @@ CREATE TABLE IF NOT EXISTS tb_user(
     tel VARCHAR(13) NOT NULL,
     password VARCHAR(32) NOT NULL,
     status VARCHAR(32) NOT NULL,
+    cpf VARCHAR(32) NOT NULL,
     cep int(10) NOT NULL,
     category_id INT,
     level INT NOT NULL,
