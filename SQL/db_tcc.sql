@@ -36,3 +36,11 @@ CREATE TABLE IF NOT EXISTS tb_msg(
     timestamp datetime NOT NULL,
     FOREIGN KEY (author) REFERENCES tb_user(id)
     )ENGINE=InnoDb DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS tb_pchat(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    msg_id INT NOT NULL,
+    receiver INT NOT NULL,
+    FOREIGN KEY (msg_id) REFERENCES tb_msg(id),
+    FOREIGN KEY (receiver) REFERENCES tb_user(id)
+    )ENGINE=InnoDb DEFAULT CHARSET=utf8;
