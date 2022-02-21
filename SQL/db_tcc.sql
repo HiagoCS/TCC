@@ -25,3 +25,10 @@ CREATE TABLE IF NOT EXISTS tb_user(
     FOREIGN KEY (category_id) REFERENCES tb_category(id),
     FOREIGN KEY (level) REFERENCES tb_levels(id)
 )ENGINE=InnoDb DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS tb_chat(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    author INT NOT NULL,
+    content TEXT NOT NULL,
+    FOREIGN KEY (author) REFERENCES tb_user(id)
+)ENGINE=InnoDb DEFAULT CHARSET=utf8;
