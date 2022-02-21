@@ -87,4 +87,19 @@
 		mail($email, $topic, $text, $header);
 		echo "<h4>Foi enviado uma verificação de e-mail, verifique sua caixa de entrada ou spam e acesse o link!</h4><p>Ou pode acessar ele diretamente por <a href='".$link."'>aqui</a></p>";
   	}
+
+  	//Conversation Functions
+  	function sendMsg($content, $author_id){
+  		$query = "INSERT INTO tb_chat VALUES(null, ".$author_id.", '".$content."')";
+  		if($GLOBALS['conn']->query($query)){
+  			//Here is the return to home, can be changed
+  			header("Location: http://highlancer.tcc/home.php");
+  		}
+  		else{
+  			var_dump($GLOBALS['conn']->query($query));
+  			var_dump($query);
+  			echo "Mensagem Não Enviada";
+  		}
+  	}
+
 ?>
