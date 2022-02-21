@@ -25,23 +25,3 @@ CREATE TABLE IF NOT EXISTS tb_user(
     FOREIGN KEY (category_id) REFERENCES tb_category(id),
     FOREIGN KEY (level) REFERENCES tb_levels(id)
 )ENGINE=InnoDb DEFAULT CHARSET=utf8;
-
-CREATE TABLE IF NOT EXISTS tb_msg(
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    author INT NOT NULL,
-    feedback_id INT,
-    content TEXT NOT NULL,
-    isAnswer boolean NOT NULL,
-    isSend boolean NOT NULL,
-    isRead boolean NOT NULL,
-    timestamp datetime NOT NULL,
-    FOREIGN KEY (author) REFERENCES tb_user(id)
-    )ENGINE=InnoDb DEFAULT CHARSET=utf8;
-
-CREATE TABLE IF NOT EXISTS tb_pchat(
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    msg_id INT NOT NULL,
-    receiver INT NOT NULL,
-    FOREIGN KEY (msg_id) REFERENCES tb_msg(id),
-    FOREIGN KEY (receiver) REFERENCES tb_user(id)
-    )ENGINE=InnoDb DEFAULT CHARSET=utf8;
