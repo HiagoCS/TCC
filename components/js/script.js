@@ -13,4 +13,17 @@ $(document).ready(function(){
 		req.send();
 	}
 	setInterval(function(){ajax();}, 1000);
+	$("#send").click(function(){
+		event.preventDefault();
+    	$.ajax({
+      		/* URL da requisição */
+      		url: '../tcc_project/components/php/send.php',
+     		 /* Tipo da Requisição */
+      		type: 'POST',
+      		/* Campos que serão enviados */
+      		data: {
+        		content: $('input[name="content"]').val()
+      		}    	
+      	});
+	});
 });
