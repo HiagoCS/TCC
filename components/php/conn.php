@@ -66,7 +66,7 @@
 				session_start();
 				$_SESSION['email'] = $email;
 				//Here pass the home page
-				//header("Location: http://highlancer.tcc/home.php");
+				header("Location: ../../home.php");
 				exit();
 			}
 			else{
@@ -93,7 +93,7 @@
   		$query = "INSERT INTO tb_chat VALUES(null, ".$author_id.", '".$content."')";
   		if($GLOBALS['conn']->query($query)){
   			//Here is the return to home, can be changed
-  			header("Location: http://highlancer.tcc/home.php");
+  			header("Location: ../../home.php");
   		}
   		else{
   			var_dump($GLOBALS['conn']->query($query));
