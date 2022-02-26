@@ -1,5 +1,19 @@
 <?php
 	session_start();
+	if(!empty($_GET['h'])){
+		$h = $_GET['h'];
+
+		if (!empty($h)) {
+			$query = 'UPDATE tb_user SET status = 1 WHERE MD5(id) = "'.$h.'"';
+			if($GLOBALS['conn']->query($query)){
+				header("Location: http://localhost/tcc_project");
+			}		
+		}
+		else{
+			echo "<script>$('form').html('<h4>Falha no cadastro!!!</h4>')</script>";
+		}
+	}
+	
 	//Here this php check the email session
 	if(!empty($_SESSION['email'])){
 		//If has a email saved, his ask the credentials, this script can be changed to best visual.
