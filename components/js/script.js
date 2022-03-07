@@ -13,14 +13,50 @@ $(document).ready(function(){
 		req.send();
 	}
 	setInterval(function(){ajax();}, 1000);
+
+	//This function serves to register user using Ajax
+	$(document).on('click', '#btnRegister', function() {
+ 		$.ajax({
+  			type:"POST",
+  			url:"./components/php/register.php",
+  			datatype:"text",
+  			beforeSend: function(){
+  				$("form").html(`<form><img id="loading" src="lib/img/loading-buffering.gif"></form>`);
+  			},
+  			data:{
+  				name: $("#name").val(),
+  				email: $("#email").val(),
+  				tel: $("#tel").val(),
+  				cpf: $("#cpf").val(),
+  				cep: $("#cep").val(),
+  				password: $("#password").val(),
+  				level: $("#levels").val()
+  			},
+  			success: function(response){
+  				$("form").html(`<form>${response}</form>`);
+  			}
+  		});
+ 	});
+ 	//This function serves to login user using Ajax
+	$(document).on('click', '#btnLogin', function() {
+ 		$.ajax({
+ 			type:"POST",
+ 			url:"./components/php/login.php",
+ 			datatype:"text",
+ 			data:{
+ 				email:$("#email").val(),
+ 				password: $("#password").val()
+ 			},
+  			success: function(response){
+  				$("form").html(`<form>${response}</form>`);
+  			}
+ 		});
+ 	});
 	$("#send").click(function(){
 		event.preventDefault();
     	$.ajax({
-      		/* URL da requisição */
       		url: '../tcc_project/components/php/send.php',
-     		 /* Tipo da Requisição */
       		type: 'POST',
-      		/* Campos que serão enviados */
       		data: {
         		content: $('input[name="content"]').val()
       		}    	
