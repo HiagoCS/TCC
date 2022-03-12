@@ -57,3 +57,12 @@ CREATE TABLE IF NOT EXISTS tb_rating(
     FOREIGN KEY (id_client) REFERENCES tb_user(id),
     FOREIGN KEY (id_product) REFERENCES tb_product(id)
    )ENGINE=InnoDb DEFAULT CHARSET=utf8;
+
+CREATE TABLE tb_receipt(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_client INT NOT NULL,
+    id_product INT NOT NULL,
+    status INT NOT NULL,
+    FOREIGN KEY (id_client) REFERENCES tb_user(id),
+    FOREIGN KEY (id_product) REFERENCES tb_product(id)
+   )ENGINE=InnoDb DEFAULT CHARSET=utf8;
