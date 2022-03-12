@@ -20,9 +20,9 @@ CREATE TABLE IF NOT EXISTS tb_user(
     status VARCHAR(32) NOT NULL,
     cpf VARCHAR(32) NOT NULL,
     cep int(10) NOT NULL,
-    category_id INT,
+    id_category INT,
     level INT NOT NULL,
-    FOREIGN KEY (category_id) REFERENCES tb_category(id),
+    FOREIGN KEY (id_category) REFERENCES tb_category(id),
     FOREIGN KEY (level) REFERENCES tb_levels(id)
 )ENGINE=InnoDb DEFAULT CHARSET=utf8;
 
@@ -32,3 +32,27 @@ CREATE TABLE IF NOT EXISTS tb_chat(
     content TEXT NOT NULL,
     FOREIGN KEY (author) REFERENCES tb_user(id)
 )ENGINE=InnoDb DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS tb_product(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    id_saler INT NOT NULL,
+    id_category INT NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    cost FLOAT NOT NULL,
+    num_sales INT NOT NULL,
+    service_tm TIME NOT NULL,
+    mean_rating FLOAT NOT NULL,
+    description LONGTEXT NOT NULL,
+    FOREIGN KEY (id_saler) REFERENCES tb_user(id),
+    FOREIGN KEY (id_category) REFERENCES tb_category(id)
+   )ENGINE=InnoDb DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS tb_rating(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    id_client INT NOT NULL,
+    id_product INT NOT NULL,
+    rating float not null,
+    description LONGTEXT NOT NULL,
+    FOREIGN KEY (id_client) REFERENCES tb_user(id),
+    FOREIGN KEY (id_product) REFERENCES tb_product(id)
+   )ENGINE=InnoDb DEFAULT CHARSET=utf8;
